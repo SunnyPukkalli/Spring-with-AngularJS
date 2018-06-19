@@ -1,0 +1,42 @@
+Add testing related dependencies from MVNREPOSITORY.COM
+
+Junit
+Mockito
+
+add scope as test for above to dependencies as we do not require them in Production environment.
+
+
+TestCalculator
+	
+	create a calculator and test absolute value function.
+	write test code 1st and then write calculator code later.
+	
+	@Test  --- indicates a test case
+	
+	assertEquals(2, 1); ==> excepted =2 , result = 1 --> false : test case fails 
+	
+All classes in JAVA folder are accessible in TEST folder as they are in the classpath and no need to import them in test classes.
+
+----------------------------------------------------
+@Test
+	public void testabs(){
+		int expected = -9 ;
+		int actual = cal.abs(-9);
+		assertEquals(expected, actual);
+	}
+----------------------------------------------------
+
+
+@Mock
+	private Calculator cal;  ---> implies that you want Calculator to be mocked
+	MockitoAnnotations.initMocks(this) ---> triggers Mockito's injection to inject the MOCK into this field. 
+	===> we do not need 
+			cal = new Calculator();
+	
+	assertEquals(0, cal.abs(20)); -- this is true with basic Mock configuration.
+	
+		when(cal.abs(-20)).thenReturn(20);
+		assertEquals(20, cal.abs(-20));
+		// assertEquals(20, cal.abs(-20)); --> cal.abs(-20) will return 20 if mocked properly and then assert must be true.
+		
+		// Inject mock will inject Mock object into constructor of Injectmock
