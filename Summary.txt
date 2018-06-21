@@ -1,0 +1,36 @@
+Setting up project to support JSON using JACKSON Library and how to test controllers using MOCKMVC in spring test module
+
+
+Setup spring	so that JSON --> Java Object and also send back data using HTTP Response
+
+
+	include MappingJackson2HttpMessageConverter --> Add jackson to the Classpath and mvc-annotation driven to the classpath
+	
+	
+	// Spring uses Message Converters to convert between HTTP requests and Java objects
+	
+	
+	
+	Search for jackson json library
+	
+	
+	to test controllers add spring test dependencies and also servlet api dependency in test so that we can test outside servlet container
+	
+	
+	mock mvc builders to set up controllers for test , there are 2 types :- 1) Standalone 2) webcontext
+	
+	
+	MOCK MVC Request Builders class  so that we can use method chaining to build our request. 
+	
+	
+	mockMvc = MockMvcBuilders.standaloneSetup(controller).build(); // this sets up and builds the request 
+	
+	
+	mockMvc.perform(get("/test")).andDo(print());
+	// this performs a GET Request with pattern /test  ; the method print() is used  print the response and all details related the HTTP Request.
+	
+	
+	
+	JSON PATH to check various parts of the object we're recieving   --> Include JSON PATH in Classpath 
+  
+  $ --> root element of JSON
