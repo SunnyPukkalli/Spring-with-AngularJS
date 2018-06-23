@@ -1,0 +1,3 @@
+Tutorial 4
+
+Spring HATEOAS is added to the project
