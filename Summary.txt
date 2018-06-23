@@ -1,3 +1,33 @@
 Tutorial 4
 
-Spring HATEOAS is added to the project
+Spring HATEOAS is added to the project to provide HATEOAS constraint to RESTFULL RESOURCES.
+
+basically we can inject links into  restful resources --> ResourceSupport and ResourceAssemblerSupport
+
+PathVariable for binding Java variables into request URL
+-------------------------------------------------------------------------------------------------------
+
+public @ResponseBody BlogEntry test(@RequestBody BlogEntry entry)
+
+we will not be using BlogEntry back/forth for JSON ,instead 
+we will be using BlogEntryResource which will be external representation of internal BlogEntry Entity.
+
+
+BlogEntryResource extends ResourceSupport Class of HATEOAS
+
+Add fields we want to display publically when converted to JSON via JACKSON
+And also the kind of data we want to recieve back from the client when they send a BlogEntryResource ( E.g. Title of the Blog)
+
+
+We want to convert between BlogEntry and BlogEntryResource --> Resource Assembler Class of HATEOAS
+
+BlogEntryResourceAsm --> class to assemble BlogEntryResource
+
+Code Sample :- BlogEntryResourceAsm  extends ResourceAssemblerSupport<BlogEntry, BlogEntryResource>
+
+1st parameter : what you're converting From 
+2nd parameter : to our external representation
+
+1)ResourceAssemblerSupport<BlogEntry, BlogEntryResource> ===> FROM BlogEntry TO BlogEntryResource
+2) Create the constructor and call super method , 1st parameter will be controller class,2nd parameter will be resource class
+3) implement the unimplemented methods and create a new BlogEntryResource and return the same.
