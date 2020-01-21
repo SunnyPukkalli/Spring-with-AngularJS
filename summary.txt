@@ -1,0 +1,47 @@
+
+
+Account Controller
+
+	createAccount
+	getAccount
+	createBlog
+	
+
+Blog Controller
+	findAllBlogs
+	getBlog
+	createBlogEntry
+	findAllBlogEntries
+
+	
+BlogEntryController
+	getBlogEntry
+	deleteBlogEntry
+	updateBlogEntry
+	
+	
+a
+
+AccountControllerTest
+>> getExistingAccount -- This test case fails because password is exposed. Excepted was NULL but was TEST.
+	In the Account resource Annotate the get password with @JsonIgnore
+	varies with Jackson version
+	
+>> createAccountNonExistingUsername -- this basically creates account
+	 we are going to add Mockito feature called Argument Captor
+	 which allows us to see particular kind of object that was passed to createAccount function on a mock object
+	 
+	 Create a variable of ArgumentCaptor and initiate in @Before method with forClass of ArgumentCaptor
+	 
+	 Use verify method of Mockito and pass our service and then createAccount method ( verfiy allows us to verify whether a method was called at all or not)
+	 
+	 use ArgumentCaptor to store password and assert it ; test fails due to jackson version and json ignore
+	 now to go setpassword and add JSON Property to set method; this will tell that password is a property and we want to only ignore getPassword
+	 
+	 
+>> createBlogExistingBlogName -- throws BlogExistsExcpetion 
+
+	 Its a service layer exception , we want rest layer exception
+	 Goto Account Controller , were Blog is created
+	 and add catch for BlogExistsExcpetion
+
